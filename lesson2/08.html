@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Lesson 02 - 8</title>
+        <style>
+            body {
+                text-align: center;
+            }
+
+            li {
+                display: inline-block;
+                width: 60px;
+                height: 60px;
+                margin-top: 10px;
+                margin-left: 10px;
+                float: left;
+                border: 1px solid black;
+                background-color: #424242;
+                color: #FFF;
+            }
+
+            li:hover {
+                background-color: #FFF;
+                color: #F69;
+	        }
+
+            li.start {
+                clear: left;
+            }
+
+            label {
+                display: block;
+                height: 30px;
+                text-align: center;
+                line-height: 30px;
+                font-size: 20px;
+                font-weight: bolder;
+                cursor: pointer;
+            }
+
+            #cal {
+                display: inline-block;
+                width: auto;
+                height: auto;
+                background-color: #EAEAEA;
+                overflow: hidden;
+                padding: 0px 10px 10px 0px;
+                margin-top: 10px;
+            }
+
+            #day {
+                display: block;
+                width: auto;
+                height: auto;
+                overflow: auto;
+                padding: 0px;
+                margin: 0px;
+            }
+
+            #cont {
+                background-color: #F1F1F1;
+                margin-top: 10px;
+                margin-left: 10px;
+                width: auto;
+                height: 50px;
+                border: 1px solid white;
+                text-align: left;
+                padding: 5px;
+            }
+
+        </style>
+        <script>
+            window.onload = function () {
+            	var messages = [
+            	    "元旦@1月1日至3日放假三天。",
+            	    "春节@2月2日至8日放假7天。",
+            	    "妇女节@3月8日妇女节，与我无关。",
+            	    "清明节@4月3日至5日放假3天",
+            	    "劳动节@4月30日至5月2日放假3天。",
+            	    "端午节@6月4日至6日放假3天。",
+            	    "小暑@7月7日小暑。不放假。",
+            	    "七夕节@8月6日七夕节。不放假。",
+            	    "中秋节@9月10日至12日放假3天。",
+            	    "国庆节@10月1日至7日放假7天。",
+            	    "立冬@11月8日立冬。不放假。",
+            	    "艾滋病日@12月1日<br />废除奴隶制国际日:12月2日。"
+            	];
+
+            	var ul = document.getElementById("day");
+            	var content = document.getElementById("cont");
+            	var days = ul.children;
+            	var i = 0;
+
+            	for (; i < days.length; i++) {
+            		days[i].index = i;
+            		days[i].onmouseover = function () {
+            			var message = messages[this.index].split("@");
+            			content.innerHTML = "<strong>" + message[0] + "</strong></br>" + message[1];
+            		};
+
+            		days[i].onmouseout = function () {
+            			content.innerHTML = "";
+            		};
+            	}
+
+            };
+        </script>
+    </head>
+    <body>
+        <div id="cal">
+            <ul id="day">
+                <li class="start"><label>1</label><label>JAN</label></li>
+                <li><label>2</label><label>FEB</label></li>
+                <li><label>3</label><label>MAR</label></li>
+                <li><label>4</label><label>APR</label></li>
+                <li class="start"><label>5</label><label>MAY</label></li>
+                <li><label>6</label><label>JUN</label></li>
+                <li><label>7</label><label>JUL</label></li>
+                <li><label>8</label><label>AUG</label></li>
+                <li class="start"><label>9</label><label>SEP</label></li>
+                <li><label>10</label><label>OCT</label></li>
+                <li><label>11</label><label>NOV</label></li>
+                <li><label>12</label><label>DEC</label></li>
+            </ul>
+            <div id="cont"></div>
+        </div>
+    </body>
+</html>
