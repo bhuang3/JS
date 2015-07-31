@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 02 - 1</title>
+    <style>
+        #cont {
+            width: 100px;
+            margin: auto;
+        }
+
+        ul {
+            list-style: none;
+            margin: 5px 0px;
+            padding: 0px;
+            border: 1px solid #9A99FF;
+            color: #9A99FF;
+            display: none;
+        }
+
+        li {
+            height: 25px;
+            text-align: center;
+            vertical-align: top;
+        }
+
+        li:hover {
+            background-color: #D9E1F6;
+        }
+
+        input {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        input, ul {
+            width: 80px;
+            cursor: pointer;
+        }
+
+        #close {
+            border-top: 1px solid #9A99FF;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            var input = document.getElementById("input");
+            var close = document.getElementById("close");
+            var list = document.getElementById("list");
+
+            var val = ["none", "block"];
+            var curr = true;
+
+            input.onclick = function () {
+                list.style.display = val[curr - 0];
+                curr = !curr;
+            };
+
+            close.onclick = function () {
+                list.style.display = val[0];
+                curr = true;
+            };
+        };
+    </script>
+</head>
+<body>
+    <div id="cont">
+        <input id="input" type="button" value="Inputer" />
+        <ul id="list">
+            <li id="hand">Hand</li>
+            <li id="pinyin">Pinyin</li>
+            <li id="close">Close</li>
+        </ul>
+    </div>
+</body>
+</html>

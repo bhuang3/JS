@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 02 - 4</title>
+    <style>
+        #pop {
+            margin: 10px auto;
+        }
+
+        #con {
+            margin: 10px auto;
+            width: 80px;
+        }
+
+        #bak {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            display: none;
+            background-color: black;
+            opacity: 0.5;
+
+        }
+
+        #win {
+            position: absolute;
+            width: 400px;
+            height: 200px;
+            margin-top: 10%;
+            margin-left: 50%;
+            left: -200px;
+            border: 4px solid #FF9900;
+            display: none;
+            background-color: #FFFFFF;
+        }
+
+        #bar {
+            height: 30px;
+            border-bottom: 4px solid #FF9900;
+            background-color: #FC0;
+        }
+
+        #close {
+            float: right;
+            position: relative;
+            top: 4px;
+            right: 4px;
+            text-align: center;
+            width: 20px;
+            height: 20px;
+            color: #FF9900;
+            border: 1px solid #FF9900;
+            cursor: pointer;
+            background-color: #FFFFFF;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var bak = document.getElementById("bak");
+            var win = document.getElementById("win");
+            var pop = document.getElementById("pop");
+            var close = document.getElementById("close");
+
+            var val = ["none", "block"];
+            var show = true;
+
+            pop.onclick = close.onclick = function () {
+                bak.style.display = val[show - 0];
+                win.style.display = val[show - 0];
+                show = !show;
+            };
+        };
+    </script>
+
+</head>
+<body>
+    <div id="con"><input id="pop" type="button" value="Window"/></div>
+    <div id="bak"></div>
+    <div id="win">
+        <div id="bar"><span id="close">x</span></div>
+        <div id="pan"></div>
+    </div>
+</body>
+</html>

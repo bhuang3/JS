@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 01 - 6</title>
+    <style>
+        #cont {
+            width: 200px;
+            margin: 10px auto;
+        }
+
+        #hint {
+            width: 200px;
+            height: 50px;
+            border: 1px solid #ff9900;
+            background-color: #FFEFA4;
+            display: none;
+        }
+
+        input, #hint {
+            margin: 5px 0px;
+            padding: 0px;
+        }
+
+    </style>
+
+    <script>
+        window.onload = function () {
+            var rp = document.getElementById("rp");
+            var hint = document.getElementById("hint");
+
+            rp.onmouseover = function () {
+                hint.style.display = "block";
+            };
+
+            rp.onmouseout = function () {
+                hint.style.display = "none";
+            };
+        };
+    </script>
+</head>
+<body>
+    <div id="cont">
+        <div id="rp"><input type="checkbox"/> Remember Password</div>
+        <div id="hint">Please check it if you're using private network</div>
+    </div>
+</body>
+</html>

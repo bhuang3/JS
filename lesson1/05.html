@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 01 - 5</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        #block {
+            margin: 10px auto;
+            color: #FFFFFF;
+            padding: 10px;
+            background-color: black;
+            border: 10px solid black;
+            width: 200px;
+            height: 200px;
+        }
+
+        #block.in {
+            background-color: #F0F0F0;
+            color: red;
+            border: 10px solid red;
+            cursor: crosshair;
+        }
+
+        #block:hover {
+            background-color: #F0F0F0;
+            color: red;
+            border: 10px solid red;
+            cursor: crosshair;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            var block = document.getElementById("block");
+
+            block.onmouseover = function () {
+                this.className = "in";
+            };
+
+            block.onmouseout = function () {
+                this.className = "";
+            };
+        };
+    </script>
+</head>
+<body>
+    <div id="block">Change Style</div>
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 02 - 3</title>
+    <style>
+        #cont {
+            width: 500px;
+            margin: auto;
+        }
+
+        label, #sum {
+            display: block;
+            margin-top: 10px;
+        }
+
+        #list {
+            width: 200px;
+        }
+
+        #result {
+            margin-top: 10px;
+            width: 100px;
+            color: red;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var sum = document.getElementById("sum");
+            var list = document.getElementById("list");
+            var result = document.getElementById("result");
+
+            list.onkeyup = list.onkeydown = function () {
+                list.value = list.value.replace(/[^0-9,]/, "");
+            };
+
+            sum.onclick = function () {
+                var ints = list.value.split(",");
+                var total = 0;
+
+                for (var i = 0; i < ints.length; i++) {
+                    total += ints[i] && ints[i].length > 0 ? parseFloat(ints[i]) : 0;
+                }
+
+                result.innerHTML = total + "";
+            };
+        };
+    </script>
+</head>
+<body>
+    <div id="cont">
+        <label><input id="list" type="text"/> 输入数字求和，数字之间用半角","号分隔</label>
+        <input id="sum" type="button" value="Sum"/>
+        <div id="result"></div>
+    </div>
+</body>
+</html>

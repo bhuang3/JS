@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 01 - 3</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        div {
+            margin: 0 auto;
+            text-align: center;
+            width: 200px;
+        }
+
+        input {
+            display: block;
+            margin: 5px auto 5px;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            var send = document.getElementById("send");
+
+            send.onclick = function () {
+                alert(document.getElementById("city").value);
+                alert(document.getElementById("zone").value);
+            };
+        };
+    </script>
+</head>
+<body>
+    <div id="cont">
+        <input id="city" type="text" value="city" />
+        <input id="zone" type="text" value="zone" />
+    </div>
+    <div id="submit">
+        <input id="send" type="button" value="Submit" />
+    </div>
+</body>
+</html>

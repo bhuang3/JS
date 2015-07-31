@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 01 - 4</title>
+    <style>
+        #change, #blocks {
+            width: 400px;
+            margin: 10px auto;
+            text-align: center;
+        }
+
+        .block {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            display: inline-block;
+            margin: auto;
+        }
+
+        #button, #reset {
+            margin: auto;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            var blocks = document.getElementsByClassName("block");
+            var button = document.getElementById("button");
+            var reset = document.getElementById("reset");
+
+            var i = 0;
+
+            button.onclick = function () {
+                for (i = 0; i < blocks.length; i++) {
+                    blocks[i].style.backgroundColor = "red";
+                }
+            };
+
+            reset.onclick = function () {
+                for (i = 0; i < blocks.length; i++) {
+                    blocks[i].style.backgroundColor = "black";
+                }
+            };
+
+            for (i = 0; i < blocks.length; i++) {
+                blocks[i].onclick = function () {
+                    this.style.backgroundColor = "red";
+                }
+            }
+        };
+    </script>
+</head>
+<body>
+    <div id="cont">
+        <div id="change">
+            <input id="button" type="button" value="Change Color" />
+            <input id="reset" type="button" value="Reset Color" />
+        </div>
+        <div id="blocks">
+            <div class="block"></div>
+            <div class="block"></div>
+            <div class="block"></div>
+        </div>
+    </div>
+</body>
+</html>
