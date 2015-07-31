@@ -1,0 +1,45 @@
+#div-outer {
+    border-radius: 1%;
+    border-width: 10px;
+    border-color: cornsilk;
+    border-style: solid;
+    width: 380px;
+    margin: 0 auto;
+}
+
+.div-parent {
+    height: 30px;
+    overflow: hidden;
+}
+
+.div-item {
+    font-size: large;
+    padding-left: 10px;
+    margin: 1px;
+    background-color: yellowgreen;
+    color: aliceblue;
+    cursor: pointer;
+    height: 30px;
+}
+
+.div-current {
+    background-color: #09F;
+}
+
+.lesson-item {
+    background-color: #7CF;
+    padding-left: 10px;
+    padding-top: 4px;
+    margin: 1px;
+    height: 30px;
+}
+
+a:link, a:visited {
+    color: #FFF;
+    background-color: #7CF;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 01 - 1</title>
+    <style>
+
+        #buttons {
+            width: 500px;
+            margin: 0px auto;
+            text-align: center;
+        }
+
+        #block {
+            width : 100px;
+            height : 100px;
+            margin: 10px auto;
+            background-color: #0099FF;
+        }
+
+    </style>
+    <script>
+
+        window.onload = function () {
+            var buttons = document.getElementsByTagName("input");
+            var div = document.getElementById("block");
+            var css = ["width", "height", "background-color", "display", "display"];
+            var val = ["200px", "200px", "red", "none", "block"];
+            var i = 0;
+
+            for (; i < buttons.length; i++) {
+                buttons[i].index = i;
+                buttons[i].onclick = function () {
+                    div.style[css[this.index]] = val[this.index];
+
+                    if (this.index === buttons.length - 1) {
+                        div.style.cssText = "";
+                    }
+                };
+            }
+        };
+
+
+    </script>
+</head>
+<body>
+    <div id="cont">
+        <div id="buttons">
+            <input type="button" value="Width" />
+            <input type="button" value="Height" />
+            <input type="button" value="Color" />
+            <input type="button" value="Visible" />
+            <input type="button" value="Reset" />
+        </div>
+        <div id="block"></div>
+    </div>
+</body>
+</html>
