@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 02 -- 11</title>
+    <style>
+        body {
+            text-align: center;
+            background-color: black;
+        }
+
+        ul {
+            list-style-type: none;
+            display: inline-block;
+            overflow: auto;
+            border-radius: 5px;
+            background-color: #FFFFFF;
+            padding: 5px 2px 2px 5px;
+            width: 212px;
+        }
+
+        li {
+            float: left;
+            margin-right: 3px;
+            margin-bottom: 3px;
+            width: 50px;
+            height: 50px;
+            padding: 0px;
+            border-radius: 3px;
+            cursor: crosshair;
+        }
+
+        li.first {
+            width: 156px;
+            height: 156px;
+            position: relative;
+            cursor: default;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var imgs = document.getElementsByTagName("img");
+            var first = imgs[0];
+            var i = 1;
+
+            for (; i < imgs.length; i++) {
+                imgs[i].onmouseover = function () {
+                    var src = this.src.replace(/small/g, "big");
+                    first.src = src;
+                };
+            }
+        };
+    </script>
+</head>
+<body>
+    <ul>
+        <li class="first"><img src="../img/lesson2/11/big_1.jpg" /></li>
+        <li><img src="../img/lesson2/11/small_1.jpg" /></li>
+        <li><img src="../img/lesson2/11/small_2.jpg" /></li>
+        <li><img src="../img/lesson2/11/small_3.jpg" /></li>
+        <li><img src="../img/lesson2/11/small_4.jpg" /></li>
+        <li><img src="../img/lesson2/11/small_5.jpg" /></li>
+        <li><img src="../img/lesson2/11/small_6.jpg" /></li>
+        <li><img src="../img/lesson2/11/small_7.jpg" /></li>
+        <li><img src="../img/lesson2/11/small_8.jpg" /></li>
+        <li><img src="../img/lesson2/11/small_9.jpg" /></li>
+        <li><img src="../img/lesson2/11/small_10.jpg" /></li>
+        <li><img src="../img/lesson2/11/small_11.jpg" /></li>
+    </ul>
+</body>
+</html>

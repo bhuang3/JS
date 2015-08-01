@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 02 - 10</title>
+    <style>
+        body {
+            text-align: center;
+            font: 12px/1.5 Tahoma;
+        }
+
+        #cont {
+            display: inline-block;
+            width: auto;
+            border: 1px solid black;
+        }
+
+        label {
+            display: inline-block;
+            font-size: 20px;
+            margin-top: 5px;
+        }
+
+        a {
+            display: block;
+            width: 90px;
+            height: 90px;
+            text-decoration: none;
+            color: #666;
+            background: #F0F0F0;
+            text-align: left;
+            padding-left: 5px;
+            padding-top: 5px;
+            cursor: crosshair;
+        }
+
+        a strong {
+            display: block;
+        }
+
+        ul {
+            width: auto;
+            overflow: visible;
+            margin: 0px 20px 20px 0px;
+            padding: 0px;
+            zoom: 1;
+        }
+
+        ul:after {
+            content: ".";
+            clear: both;
+            height: 0px;
+            visibility: hidden;
+            display: block;
+        }
+
+        li {
+            position: relative;
+            list-style: none;
+            display: inline-block;
+            border: 1px solid black;
+            margin-left: 20px;
+            margin-top: 20px;
+            float: left;
+        }
+
+        li.start {
+            clear: left;
+        }
+
+        img {
+            position: absolute;
+            left: -20px;
+            top: -20px;
+            border: 2px solid black;
+            display: none;
+            cursor: crosshair;
+        }
+
+        .zindex {
+            z-index: 1;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            var cars = document.getElementsByTagName("a");
+            var imgs = document.getElementsByTagName("img");
+            var i = 0;
+
+            for (; i < cars.length; i++) {
+                cars[i].index = i;
+                imgs[i].index = i;
+
+                cars[i].onmouseover = imgs[i].onmouseover = function () {
+                    imgs[this.index].className = "zindex";
+                    imgs[this.index].style.display = "block";
+                };
+
+                cars[i].onmouseout = imgs[i].onmouseout = function () {
+                    imgs[this.index].className = "";
+                    imgs[this.index].style.display = "none";
+                };
+            }
+        };
+    </script>
+</head>
+<body>
+    <div id="cont">
+        <label><strong>名车车标展示-鼠标移过显示车标</strong></label>
+        <ul id="cars">
+            <li class="start">
+                <a href="#" title="BMW 宝马汽车"><strong>BMW</strong>宝马汽车</a>
+                <img src="../img/lesson2/05/1.jpg" alt="BMW 宝马汽车" />
+            </li>
+            <li>
+                <a href="#" title="Alfa Romeo 阿尔法-罗米欧"><strong>Alfa Romeo</strong> 阿尔法-罗米欧</a>
+                <img src="../img/lesson2/05/2.jpg" alt="Alfa Romeo 阿尔法-罗米欧" />
+            </li>
+            <li>
+                <a href="#" title="Skoda 斯柯达"><strong>Skoda</strong> 斯柯达</a>
+                <img src="../img/lesson2/05/3.jpg" alt="Skoda 斯柯达" />
+            </li>
+            <li>
+                <a href="#" title="Volkswagen 大众汽车"><strong>Volkswagen</strong> 大众汽车</a>
+                <img src="../img/lesson2/05/4.jpg" alt="Volkswagen 大众汽车" />
+            </li>
+            <li>
+                <a href="#" title="Saab 萨布牌轿"><strong>Saab</strong> 萨布牌轿车</a>
+                <img src="../img/lesson2/05/5.jpg" alt="Saab 萨布牌轿" />
+            </li>
+            <li class="start">
+                <a href="#" title="Lamborghini 兰博基尼"><strong>Lamborghini</strong> 兰博基尼</a>
+                <img src="../img/lesson2/05/6.jpg" alt="Lamborghini 兰博基尼" />
+            </li>
+            <li>
+                <a href="#" title="Porsche 保时捷"><strong>Porsche</strong> 保时捷</a>
+                <img src="../img/lesson2/05/7.jpg" alt="Porsche 保时捷" />
+            </li>
+            <li>
+                <a href="#" title="Peugeot 标致"><strong>Peugeot</strong> 标致</a>
+                <img src="../img/lesson2/05/8.jpg" alt="Peugeot 标致" />
+            </li>
+            <li>
+                <a href="#" title="Mercedes1 梅赛德斯 奔驰"><strong>Mercedes1</strong> 梅赛德斯 奔驰</a>
+                <img src="../img/lesson2/05/9.jpg" alt="Mercedes1 梅赛德斯 奔驰" />
+            </li>
+            <li>
+                <a href="#" title="Buick 别克汽车"><strong>Buick</strong> 别克汽车</a>
+                <img src="../img/lesson2/05/10.jpg" alt="Buick 别克汽车" />
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

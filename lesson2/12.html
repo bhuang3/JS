@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 02 - 12</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        ul {
+            display: inline-block;
+            list-style-type: none;
+            border: 1px solid black;
+            border-radius: 5px;
+            padding: 10px 10px 10px 10px;
+            background-color: #FAFAFA;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        a {
+            text-decoration: none;
+            display: inline-block;
+            margin-left: 10px;
+            color: #09F;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            var cbs = document.getElementsByTagName("input");
+            var first = document.getElementById("first");
+            var reverse = document.getElementById("reverse");
+            var label = first.nextElementSibling;
+            var allyes = "<strong>全选</strong>";
+            var allno = "<strong>全不选</strong>";
+
+            for (var i = 1; i < cbs.length; i++) {
+                cbs[i].onclick = function () {
+                    var all = true;
+
+                    for (var j = 1; j < cbs.length; j++) {
+                        all = all & cbs[j].checked;
+                    }
+
+                    first.checked = all;
+                    label.innerHTML = all ? allno : allyes;
+                };
+            }
+
+            first.onclick = function () {
+                for (var i = 1; i < cbs.length; i++) {
+                    cbs[i].checked = this.checked;
+                }
+
+                label.innerHTML = this.checked ? allno : allyes;
+            };
+
+            reverse.onclick = function () {
+                var all = true;
+
+                for (var i = 1; i < cbs.length; i++) {
+                    cbs[i].checked = !cbs[i].checked;
+                    all = all & cbs[i].checked;
+                }
+
+                first.checked = all;
+                label.innerHTML = all ? allno : allyes;
+            };
+
+        };
+    </script>
+</head>
+<body>
+    <ul>
+        <li><input type="checkbox" id="first"/><label><strong>全选</strong></label><a id="reverse" href="#">反选</a></li>
+        <hr/>
+        <li><input type="checkbox"/><label>选项（一）</label></li>
+        <li><input type="checkbox"/><label>选项（二）</label></li>
+        <li><input type="checkbox"/><label>选项（三）</label></li>
+        <li><input type="checkbox"/><label>选项（四）</label></li>
+        <li><input type="checkbox"/><label>选项（五）</label></li>
+        <li><input type="checkbox"/><label>选项（六）</label></li>
+        <li><input type="checkbox"/><label>选项（七）</label></li>
+        <li><input type="checkbox"/><label>选项（八）</label></li>
+        <li><input type="checkbox"/><label>选项（九）</label></li>
+        <li><input type="checkbox"/><label>选项（十）</label></li>
+    </ul>
+</body>
+</html>
