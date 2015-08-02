@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 03 - 5</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        span {
+            font-size: xx-large;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            var count = document.getElementById("count");
+            var i = 1;
+            setInterval(function () {
+                if (count.innerText) {
+                    count.innerText = ++i;
+                } else {
+                    count.textContent = ++i;
+                }
+            }, 1000);
+        };
+    </script>
+</head>
+<body>
+    <span id="count">1</span>
+</body>
+</html>

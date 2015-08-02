@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 03 - 5</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        input {
+            width: 80px;
+            margin-right: 10px;
+        }
+
+        strong {
+            margin-right: 10px;
+        }
+
+        #comp {
+            width: 100px;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            var first = document.getElementById("first");
+            var second = document.getElementById("second");
+            var comp = document.getElementById("comp");
+            var big = document.getElementById("big");
+
+            first.onkeyup = first.onkeydown = second.onkeyup = second.onkeydown = function () {
+                this.value = this.value.replace(/[^0-9]/, "");
+            };
+
+            comp.onclick = function () {
+                var val1 = first.value ? parseInt(first.value) : 0;
+                var val2 = second.value ? parseInt(second.value) : 0;
+                big.innerHTML = val1 > val2 ? val1 : val2;
+            };
+        };
+    </script>
+</head>
+<body>
+    <input id="first" type="text"/><strong> vs </strong><input id="second" type="text"/>
+    <input id="comp" type="button" value="Compare >>"><span id="big">?</span>
+</body>
+</html>

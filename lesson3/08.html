@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 03 - 8</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        input {
+            background-color: #F0F0F0;
+            color: #000000;
+            width: 40px;
+            height: 20px;
+            line-height: 20px;
+            margin: 0px 10px 10px 0px;
+            text-align: center;
+        }
+
+        label {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        #clock {
+            background-color: #000000;
+            display: inline-block;
+            padding: 20px 10px 20px 20px;
+            height: 20px;
+            color: #F0F0F0;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            var hour = document.getElementById("hour");
+            var minute = document.getElementById("minute");
+            var second = document.getElementById("second");
+            var date = [];
+            var now = new Date;
+
+            date[0] = now.getHours();
+            date[1] = now.getMinutes();
+            date[2] = now.getSeconds();
+
+            setTime(hour, minute, second, date);
+
+            setInterval(function () {
+                now.setSeconds(now.getSeconds() + 1);
+
+                date[0] = now.getHours();
+                date[1] = now.getMinutes();
+                date[2] = now.getSeconds();
+
+                setTime(hour, minute, second, date);
+            }, 1000);
+        };
+
+        function setTime (hour, minute, second, date) {
+            hour.value = date[0] < 10 ? "0" + date[0] : date[0];
+            minute.value = date[1] < 10 ? "0" + date[1] : date[1];
+            second.value = date[2] < 10 ? "0" + date[2] : date[2];
+        }
+    </script>
+</head>
+<body>
+    <div id="clock">
+        <input id="hour" type="text" readonly/><label>点</label>
+        <input id="minute" type="text" readonly/><label>分</label>
+        <input id="second" type="text" readonly/><label>秒</label>
+    </div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 03 - 3</title>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var sum = document.getElementById("sum");
+            var i = 0;
+
+            sum.onclick = function () {
+                this.value = ++i;
+            };
+        };
+    </script>
+</head>
+<body>
+    <input id="sum" type="button" value="0"/>
+</body>
+</html>
