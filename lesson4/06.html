@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 04 - 6</title>
+    <style>
+        body {
+            font: 14px/1.5 \5fae\8f6f\96c5\9ed1;
+            text-align: center;
+        }
+
+        p {
+            display: block;
+            margin: 0px;
+            text-align: left;
+        }
+
+        label {
+            display: inline-block;
+            margin-right: 0px;
+        }
+
+        input {
+            margin-top: 10px;
+            margin-left: 0px;
+        }
+
+        #login {
+            display: inline-block;
+            border: 3px solid #ff9900;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        #header {
+            display: inline-block;
+            border-bottom: 3px solid #ff9900;
+            color:#FE791E;
+            margin: 0px;
+            width: 100%;
+            padding: 10px 0px 10px 20px;
+            text-align: left;
+            font-size: 16px;
+            background-color: #FFEBD7;
+
+        }
+
+        #panel {
+            background-color: #FFEBD7;
+        }
+
+        #username, #password {
+            width: 200px;
+            height: 25px;
+            margin-right: 100px;
+            font-size: larger;
+            background-color: bisque;
+            border: 1px solid #77CCFF;
+            border-radius: 2px;
+        }
+
+        #panel label {
+            width: 80px;
+            height: 30px;
+            text-align: right;
+            margin: 0px 5px 0px 20px;
+        }
+
+        #submit {
+            width: 100px;
+            height: 40px;
+            color: #F0F0F0;
+            background-color: #F60;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        #username.focus, #password.focus {
+            background-color: #FFDDDD;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            var username = document.getElementById("username");
+            var password = document.getElementById("password");
+
+            username.onfocus = password.onfocus = function () {
+                this.className = "focus";
+            };
+
+            username.onblur = password.onblur = function () {
+                this.className = "";
+            };
+
+        };
+    </script>
+</head>
+<body>
+    <div id="login">
+        <div id="header">用户登录</div>
+        <div id="panel">
+            <p><label>用户名：</label><input id="username" type="text"/></p>
+            <p><label>密码：</label><input id="password" type="password"/></p>
+            <p><label></label><input id="submit" type="button" value="登 录"/></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 04 - 8</title>
+    <style>
+        body {
+            text-align: center;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var evt = document.getElementById("evt");
+            var add = document.getElementById("add");
+            var remove = document.getElementById("remove");
+
+            add.onclick = function () {
+                if (evt.addEventListener) {
+                    evt.addEventListener("click", click)
+                } else {
+                    evt.attachEvent("onclick", click);
+                }
+
+                evt.value = "Event";
+            };
+
+            remove.onclick = function () {
+                if (evt.removeEventListener) {
+                    evt.removeEventListener("click", click)
+                } else {
+                    evt.detachEvent("onclick", click);
+                }
+
+                evt.value = "No Event";
+            };
+
+            function click() {
+                alert("Click Event");
+            }
+        };
+    </script>
+</head>
+<body>
+    <input id="evt" type="button" value="No Event">
+    <input id="add" type="button" value="Add Event">
+    <input id="remove" type="button" value="Remove Event">
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 04 - 5</title>
+    <style>
+        pre {
+            background-color: aquamarine;
+        }
+    </style>
+    <script>
+        function sum () {
+            var sum = 0;
+
+            for (var i = 0; i < arguments.length; i++) {
+                sum += Number(arguments[i]);
+            }
+
+            alert(sum);
+        }
+
+        window.onload = function () {
+            sum(1,2,3,4,5,6,7,8,9,10);
+        };
+    </script>
+</head>
+<body>
+    <pre>
+        function sum () {
+            var sum = 0;
+
+            for (var i = 0; i < arguments.length; i++) {
+                sum += Number(arguments[i]);
+            }
+
+            alert(sum);
+        }
+
+        window.onload = function () {
+            sum(1,2,3,4,5,6,7,8,9,10);
+        };
+    </pre>
+</body>
+</html>

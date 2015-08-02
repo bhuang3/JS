@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 04 - 5</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        div {
+            border: 1px solid orangered;
+            background-color: #ff9900;
+            display: inline-block;
+            width: 500px;
+            height: 300px;
+        }
+
+        labal {
+            display: inline-block;
+            float: left;
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            color: #F0F0F0;
+            margin: 10px 0px 0px 10px;
+            background-color: orangered;
+            cursor: pointer;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+            var getter = document.getElementById("get");
+            var setter = document.getElementById("set");
+            var def = document.getElementById("def");
+            var block = document.getElementById("block");
+
+            getter.onclick = function () {
+                alert(block.offsetWidth + " - " + block.offsetHeight + " - ");
+            };
+
+            setter.onclick = function () {
+                block.style.width = 400 + "px";
+                block.style.height = 200 + "px";
+                block.style.backgroundColor = "#77CCFF";
+            };
+
+            def.onclick = function () {
+                block.style.width = 500 + "px";
+                block.style.height = 300 + "px";
+                block.style.backgroundColor = "#ff9900";
+            };
+        };
+    </script>
+</head>
+<body>
+    <div id="block">
+        <labal id="get">Get Style</labal>
+        <labal id="set">Set Style</labal>
+        <labal id="def">Default Style</labal>
+    </div>
+</body>
+</html>
