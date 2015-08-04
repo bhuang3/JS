@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 05 - 7</title>
+    <style>
+        body {
+            font-size: 12px;
+        }
+
+        ul {
+            position: absolute;
+            display: none;
+            list-style-type: none;
+            border: 1px solid #57646E;
+            border-radius: 4%;
+            padding: 3px 3px 3px 3px;
+        }
+
+        ul li {
+            display: inline-block;
+            float: left;
+            clear: left;
+            height: 24px;
+            line-height: 24px;
+            cursor: pointer;
+            background-color: #EAEAD7;
+        }
+
+        ul span {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            padding: 0px;
+            margin: 0px;
+            text-align: center;
+            line-height: 24px;
+            background: url("../img/lesson5/06/ico.png") no-repeat;
+        }
+
+        ul label {
+            display: inline-block;
+            height: 24px;
+            width: 80px;
+            padding-left: 10px;
+            line-height: 24px;
+            vertical-align: top;
+            background-color: #FFFFFF;
+            cursor: pointer;
+        }
+
+        #copy {
+            background-position: 0px -24px;
+        }
+
+        #paste {
+            background-position: 0px -48px;
+        }
+
+        .focus {
+            background-color: #999;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var menu = document.getElementById("menu");
+            var menus = document.getElementsByTagName("li");
+            var labels = document.getElementsByTagName("label");
+            var i = 0;
+
+            for (; i < menus.length; i++) {
+                menus[i].index = i;
+                menus[i].onmouseover = mouseover;
+                menus[i].onmouseout = mouseout;
+            }
+
+            function mouseover () {
+                this.className = "focus";
+                labels[this.index].className = "focus";
+            }
+
+            function mouseout () {
+                this.className = "";
+                labels[this.index].className = "";
+            }
+
+            document.oncontextmenu = function (event) {
+                event = event || window.event;
+
+                menu.style.left = event.clientX + "px";
+                menu.style.top = event.clientY + "px";
+                menu.style.display = "block";
+
+                return false;
+            };
+
+            document.onclick = function () {
+                menu.style.display = "none";
+            };
+        };
+    </script>
+</head>
+<body>
+    <ul id="menu">
+        <li><span id="cut"></span><label>剪切</label></li>
+        <li><span id="copy"></span><label>复制</label></li>
+        <li><span id="paste"></span><label>粘贴</label></li>
+    </ul>
+</body>
+</html>

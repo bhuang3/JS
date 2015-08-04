@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 05 - 7</title>
+    <style>
+        #block {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            left: 200px;
+            top: 50px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var block = document.getElementById("block");
+            var speed = 10;
+
+            // left - 37
+            // up - 38
+            // right - 39
+            // down - 40
+            document.onkeydown = function (event) {
+                event = event || window.event;
+
+                if (event.keyCode === 37)
+                    block.style.left = (block.offsetLeft - speed) + "px";
+                if (event.keyCode === 38)
+                    block.style.top = (block.offsetTop - speed) + "px";
+                if (event.keyCode === 39)
+                    block.style.left = (block.offsetLeft + speed) + "px";
+                if (event.keyCode === 40)
+                    block.style.top = (block.offsetTop + speed) + "px";
+            };
+        };
+    </script>
+</head>
+<body>
+    <div id="block"></div>
+</body>
+</html>
