@@ -152,6 +152,8 @@ a {
 #message-list li .message {
 	display: inline-block;
 	text-align: justify;
+	width: 410px;
+	word-wrap: break-word;
 }
 
 #message-list li .message a {
@@ -166,6 +168,7 @@ a {
 
 #message-list li .date a {
 	float: right;
+	display: none;
 }
 
 a:hover {

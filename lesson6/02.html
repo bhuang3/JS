@@ -6,10 +6,13 @@
         <link href="../css/lesson6/02.css" rel="stylesheet"></link>
         <script type="text/javascript">
             window.onload = function () {
-            	var faces = document.getElementById("face-list").children;
-            	var messages = document.getElementById("message-list");
             	var deleteLinks = document.getElementsByClassName("delete");
+            	var faces = document.getElementById("face-list").children;
+            	var messageList = document.getElementById("message-list");
             	var post = document.getElementById("post");
+            	var messages = messageList.children;
+            	var message = document.getElementById("message");
+            	var name = document.getElementById("name");
             	var i = 0;
             	var select = null;
             	var image = null;
@@ -26,10 +29,22 @@
             		};
             	}
 
+            	for (i = 0; i < deleteLinks.length; i++) {
+            		messages[i].onmousemove = messageOnMove;
+            		messages[i].onmouseout = messageOnOut;
+            		deleteLinks[i].onclick = removeMessage;
+            	}
+
             	post.onclick = function () {
-            		addMessage(document.getElementById("name").value,
-            				document.getElementById("message").value,
-            				image.src);
+            		addMessage(name.value, message.value, image.src);
+            	};
+
+            	document.onkeyup = function (event) {
+            		event = event || window.event;
+
+            		if (event.ctrlKey && event.keyCode === 13) {
+            			addMessage(name.value, message.value, image.src);
+            		}
             	};
 
             	function addMessage(name, content, imageSrc) {
@@ -48,19 +63,73 @@
            		               "</div>";
 
                     li.innerHTML = html;
-                    var link = li.firstElementChild.nextElementSibling.firstElementChild.nextElementSibling.firstElementChild;
+
+                    if (messageList.children.length) {
+                    	messageList.insertBefore(li, messageList.firstChild);
+                    } else {
+                    	messageList.appendChild(li);
+                    }
+
+                    var height = li.offsetHeight;
+                    var speed = height * 1.0 / 15;
+                    var opacity = 1.0 / 15;
+                    var currHeight = 0;
+                    var currOpacity = 0;
+
+                    li.style.height = "0px";
+                    li.style.opacity = "0";
+
+                    var timer = setInterval(function () {
+                    	currHeight += speed;
+                    	currOpacity += opacity;
+
+                    	li.style.height = currHeight + "px";
+                    	li.style.opacity = currOpacity + "";
+
+                    	if (li.offsetHeight >= height) {
+                    		li.style.height = height;
+                    		li.style.opacity = "1";
+                    		clearInterval(timer);
+                    	}
+                    }, 30);
+
+                    var link = li.children[1].children[1].children[0];
 
                     link.onclick = removeMessage;
-
-                    messages.insertBefore(li, messages.firstChild);
+                    li.onmousemove = messageOnMove;
+                    li.onmouseout = messageOnOut;
             	}
 
             	function removeMessage(event) {
-            		
+            		var li = this.parentNode.parentNode.parentNode;
+            		var height = li.offsetHeight;
+                    var speed = height * 1.0 / 15;
+                    var opacity = 1.0 / 15;
+                    var currHeight = height;
+                    var currOpacity = 1;
+
+                    var timer = setInterval(function () {
+                    	currHeight -= speed;
+                    	currOpacity -= opacity;
+                    	li.style.height = currHeight + "px";
+                    	li.style.opacity = currOpacity + "";
+
+                    	if (li.style.opacity <= 0) {
+                    		li.style.height = "0px";
+                    		li.style.opacity = "0";
+                    		clearInterval(timer);
+                    		messageList.removeChild(li);
+                    	}
+                    }, 30);
+                    
             	}
 
             	function messageOnMove(event) {
-            		
+            		this.children[1].children[1].children[0].style.display = "inline-block";
+            	}
+
+            	function messageOnOut(event) {
+            		this.children[1].children[1].children[0].style.display = "none";
             	}
             };
         </script>
