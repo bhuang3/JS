@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Lesson 07 - 2</title>
+        <style>
+            body {
+                background-color: black;
+                height: 100%;
+                text-align: center;
+            }
+
+            #box {
+                display: inline-block;
+                position: relative;
+                width: 800px;
+                padding: 0px;
+                margin: 20px auto;
+                min-height: 400px;
+                overflow: visible;
+                text-align: center;
+            }
+
+            #box.loading {
+                background: url("../img/loading.gif") 50% 50% no-repeat;
+            }
+
+            #title {
+                display: block;
+                position: absolute;
+                background-color: black;
+                width: inherit;
+                margin: 0px;
+                left: 0px;
+                top: 0px;
+                font-size: 20px;
+                line-height: 50px;
+                text-align: center;
+                color: #FFF;
+                opacity: 0;
+            }
+
+            #pic {
+                display: inline-block;
+                overflow: hidden;
+            }
+
+            #left, #right {
+                display: inline-block;
+                position: absolute;
+                width: 50%;
+                height: 100%;
+                top: 0px;
+                cursor: pointer;
+            }
+
+            #left {
+                float: left;
+                left: 0px;
+            }
+
+            #right {
+                float: right;
+                right: 0px;
+            }
+
+            #left_btn, #right_btn {
+                position: absolute;
+                display: inline-block;
+                width: 39px;
+                height: 80px;
+                top: 50%;
+                border-radius: 5px;
+                background: url("../img/btn.png") no-repeat;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+            #left_btn {
+                left: 10px;
+                background-position: left 0px;
+            }
+
+            #right_btn {
+                right: 10px;
+                background-position: right 0px;
+            }
+
+        </style>
+        <script>
+            window.onload = function () {
+            	var box = document.getElementById("box");
+            	var pic = document.getElementById("pic");
+            	var title = document.getElementById("title");
+            	var left = document.getElementById("left");
+            	var right = document.getElementById("right");
+            	var leftBtn = document.getElementById("left_btn");
+            	var rightBtn = document.getElementById("right_btn");
+            	var curr = 0;
+            	var pics = [
+            	    {"src" : "http://img1.gtimg.com/news/pics/hv1/106/238/825/53706421.jpg", "title" : "7月26日，吊车将事故现场的车头残片吊至大型运输车辆上。"},
+            	    {"src" : "http://img1.gtimg.com/news/pics/hv1/105/238/825/53706420.jpg", "title" : "7月26日，一辆大卡车准备驶离事故现场。"},
+            	    {"src" : "http://img1.gtimg.com/news/pics/hv1/101/238/825/53706416.jpg", "title" : "7月26日，工人在给最后一节车厢盖上彩条布，准备运离现场。"},
+            	    {"src" : "http://img1.gtimg.com/news/pics/hv1/99/238/825/53706414.jpg", "title" : "7月26日，一名工人在事故现场最后一节车厢上作业。"},
+            	    {"src" : "http://img1.gtimg.com/news/pics/hv1/100/238/825/53706415.jpg", "title" : "7月26日，工人在给最后一节车厢盖上彩条布，准备运离现场。"}
+            	];
+
+            	leftBtn.timer = null;
+            	rightBtn.timer = null;
+
+            	function loadImage () {
+            		box.className = "loading";
+            		title.innerHTML = "";
+            		title.style.opacity = 0;
+            		title.style.height = "0px"
+                	pic.src = pics[curr].src;
+
+                	pic.onload = function () {
+                		box.className = "";
+                		this.style.width = (this.offsetWidth > 800 ? 800 : this.offsetWidth) + "px";
+
+                		var timer = setInterval(function () {
+                			title.style.height = title.offsetHeight + 10 + "px";
+                			title.style.opacity = parseFloat(title.style.opacity) + 0.15;
+
+                			if (title.offsetHeight >= 50) {
+                				title.style.height = "50px";
+                				title.innerHTML = pics[curr].title;
+                				clearInterval(timer);
+                			}
+                		}, 30);
+                	};
+            	}
+
+            	leftBtn.onclick = function () {
+            		if (curr <= 0) {
+            			return;
+            		}
+
+            		loadImage(--curr);
+            	};
+
+            	rightBtn.onclick = function () {
+            		if (curr >= pics.length - 1) {
+            			return;
+            		}
+
+            		loadImage(++curr);
+            	};
+
+            	left.onmouseover = leftBtn.onmouseover = function () {
+            		fade(leftBtn, 0, 1);
+            	};
+
+            	right.onmouseover = rightBtn.onmouseover = function () {
+            		fade(rightBtn, 0, 1);
+            	};
+
+            	left.onmouseout = leftBtn.onmouseout = function () {
+            		fade(leftBtn, 1, 0);
+            	};
+
+            	right.onmouseout = rightBtn.onmouseout = function () {
+            		fade(rightBtn, 1, 0);
+            	};
+
+            	function fade (target, from, to) {
+            		clearInterval(target.timer);
+
+            		var speed = (to - from) * 1.0 / 5;
+
+            		if (target.style.opacity == to) {
+            			clearInterval(target.timer);
+            		} else {
+            			target.timer = setInterval(function () {
+                			from += speed;
+                			target.style.opacity = from;
+
+                			if (target.style.opacity == to || target.style.opacity < 0 || target.style.opacity > to) {
+                				target.style.opacity = to;
+                				clearInterval(target.timer);
+                			}
+                		}, 30);            			
+            		}
+            	}
+
+            	loadImage();
+            };
+        </script>
+    </head>
+    <body>
+        <div id="box">
+            <h2 id="title"></h2>
+            <img id="pic"/>
+            <div class="nag" id="left"></div>
+            <div class="nag" id="right"></div>
+            <div class="btn" id="left_btn"></div>
+            <div class="btn" id="right_btn"></div>
+        </div>
+    </body>
+</html>
