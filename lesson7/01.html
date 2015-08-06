@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 07 - 1</title>
+    <style>
+        body {
+            background-color: #000000;
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #banner {
+            display: inline-block;
+            overflow: hidden;
+            position: relative;
+            padding: 0px;
+            margin: 20px auto;
+            border: 10px solid #FFFFFF;
+        }
+
+        #images {
+            position: relative;
+            display: block;
+            height: 170px;
+            border-radius: 5px;
+        }
+
+        #images li {
+            display: block;
+            vertical-align: top;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #images li img {
+            display: block;
+        }
+
+        #index {
+            display: block;
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+            cursor: pointer;
+        }
+
+        #index li {
+            display: inline-block;
+            background-color: orange;
+            width: 20px;
+            height: 20px;
+            border-radius: 100%;
+            padding: 0px;
+            margin-left: 5px;
+            line-height: 20px;
+            text-align: center;
+            color: #FFFFFF;
+            opacity: 0.5;
+            cursor: pointer;
+        }
+
+        #index li:hover, #index li.selected {
+            background-color: orangered;
+            opacity: 1;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var height = 170;
+            var speed = 0;
+            var start = 0;
+            var end = 0;
+            var images = document.getElementById("images");
+            var indexes = document.getElementById("index").children;
+            var curr = 0;
+            var i = 0;
+            var ltr = true;
+            var timer = null;
+            var playTimer = null;
+
+            for (; i < indexes.length; i++) {
+                indexes[i].index = i;
+                indexes[i].onmouseover = mouseover;
+                indexes[i].onmouseout = mouseout;
+            }
+
+            function mouseover () {
+                clearInterval(timer);
+                clearInterval(playTimer);
+
+                next(this.index);
+                timer = setInterval(rollover, 30);
+            }
+
+            function mouseout () {
+                playTimer = setInterval(play, 2000);
+            }
+
+            function rollover () {
+                start += speed;
+                images.style.top = start + "px";
+
+                if (images.offsetTop == end) {
+                    clearInterval(timer);
+                }
+            }
+
+            function play () {
+                if (curr === indexes.length - 1) {
+                    ltr = false;
+                } else if (curr === 0) {
+                    ltr = true;
+                }
+
+                next(ltr ? curr + 1 : curr - 1);
+
+                timer = setInterval(rollover, 30);
+            }
+
+            function next (index) {
+                indexes[curr].className = "";
+                indexes[index].className = "selected";
+                start = images.offsetTop;
+                curr = index;
+
+                end = -1 * index * height;
+                speed = (end - start) * 1.0 / 10;
+            }
+
+            playTimer = setInterval(play, 2000);
+        };
+    </script>
+</head>
+<body>
+    <div id="banner">
+        <ul id="images">
+            <li><img src="../img/lesson4/02/01.jpg"/></li>
+            <li><img src="../img/lesson4/02/02.jpg" /></li>
+            <li><img src="../img/lesson4/02/03.jpg" /></li>
+            <li><img src="../img/lesson4/02/04.jpg" /></li>
+            <li><img src="../img/lesson4/02/05.jpg" /></li>
+        </ul>
+        <ul id="index">
+            <li class="selected">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ul>
+    </div>
+</body>
+</html>
