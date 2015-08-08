@@ -227,19 +227,19 @@ var lesson = [
         title: "第八例",
         lesson: [{
             text: "iPhone手机解锁效果",
-            href: "iphone-unlock"
-        },
-        {
-            text: "自定义滚动条",
             href: "lesson8/01.html"
         },
         {
-            text: "拖拽一Clone",
+            text: "自定义滚动条",
             href: "lesson8/02.html"
         },
         {
-            text: "拖拽并可以改变大小",
+            text: "拖拽一Clone",
             href: "lesson8/03.html"
+        },
+        {
+            text: "拖拽并可以改变大小",
+            href: "lesson8/04.html"
         }]
     },
     {

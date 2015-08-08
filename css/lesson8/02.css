@@ -1,0 +1,91 @@
+body {
+    background-color: #3E3E3E;
+}
+
+#box {
+    width: 620px;
+    height: 200px;
+    margin: 20px auto;
+}
+
+#products {
+    list-style-type: none;
+    overflow: hidden;
+    margin: 0px 0px 10px 0px;
+    padding: 0px;
+    white-space: nowrap;
+}
+
+#products li {
+    display: inline-block;
+    text-align: center;
+    margin-right: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: black;
+    color: white;
+    font: 14px/1.5 \5fae\8f6f\96c5\9ed1;
+}
+
+#products li img, #products li span {
+    display: block;
+}
+
+#products li img {
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+#bar {
+    height: 15px;
+    cursor: e-resize;
+    background-color: #0A0A0A;
+}
+
+#bar-left, #bar-middle, #bar-right {
+    height: inherit;
+    display: inline-block;
+}
+
+#bar-left, #bar-right {
+    background: url("../../img/lesson8/02/03.gif") no-repeat;
+}
+
+#bar-left {
+    width: 30px;
+    float: left;
+    background-position: left -2px;
+}
+
+#bar-right {
+    width: 30px;
+    float: right;
+    background-position: right -2px;
+}
+
+#bar-middle {
+    width: 200px;
+    position: relative;
+    left: -2px;
+    background: url("../../img/lesson8/02/01.gif");
+}
+
+#bar-middle-left, #bar-middle-right {
+    width: 6px;
+    height: 19px;
+    background: url("../../img/lesson8/02/02.gif") no-repeat;
+}
+
+#bar-middle-left {
+    float: left;
+    position: relative;
+    left: -6px;
+    background-position: left 0px;
+}
+
+#bar-middle-right {
+    float: right;
+    position: relative;
+    right: -6px;
+    background-position: right 0px;
+}
