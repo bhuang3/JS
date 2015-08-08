@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Lesson 08 - 2</title>
+        <link href="../css/lesson8/02.css" rel="stylesheet"/>
+        <script>
+            window.onload = function () {
+            	var test = document.getElementById("test");
+            	var box = document.getElementById("box");
+            	var bar = document.getElementById("bar-middle");
+            	var barLeft = document.getElementById("bar-left");
+            	var barRight = document.getElementById("bar-right");
+            	var distance = 0;
+            	var base = box.offsetLeft + 36;
+            	var start = 0;
+            	var curr = 0;
+
+            	bar.onmousedown = function (event) {
+            		event = event || window.event;
+            		distance = event.clientX - this.offsetLeft;
+
+            		if (document.addEventListener) {
+            			document.addEventListener("mousemove", move);
+            		} else {
+            			document.attachEvent("onmousemove", move);
+            		}
+            	};
+
+            	document.onmouseup = function () {
+            		releaseEvent();
+            	};
+
+            	function move (event) {
+            		event = event || window.event;
+            		curr = (event.clientX - distance) - base;
+
+            		if (curr <= -2) {
+            			curr = -2
+            		} else if (curr >= 362){
+            			curr = 362;
+            		}
+
+            		bar.style.left = curr + "px";
+            	}
+
+            	function releaseEvent () {
+            		if (document.removeEventListener) {
+            			document.removeEventListener("mousemove", move);
+            		} else {
+            			document.detachEvent("onmousemove", move);
+            		}
+            	}
+
+            };
+        </script>
+    </head>
+    <body>
+        <div id="box">
+            <ul id="products">
+                <li><img src="../img/lesson8/02/1.jpg" /><span>iPhone 4</span></li>
+                <li><img src="../img/lesson8/02/2.jpg" /><span>iPad 2</span></li>
+                <li><img src="../img/lesson8/02/3.jpg" /><span>iPod touch</span></li>
+                <li><img src="../img/lesson8/02/4.jpg" /><span>iPod classic</span></li>
+                <li><img src="../img/lesson8/02/5.jpg" /><span>iPod shuffle</span></li>
+                <li><img src="../img/lesson8/02/6.jpg" /><span>iPod nano</span></li>
+                <li><img src="../img/lesson8/02/7.jpg" /><span>MacBook Air</span></li>
+                <li><img src="../img/lesson8/02/8.jpg" /><span>MacBook Pro</span></li>
+                <li><img src="../img/lesson8/02/9.jpg" /><span>Mac mini</span></li>
+                <li><img src="../img/lesson8/02/10.jpg" /><span>Mac Pro</span></li>
+            </ul>
+            <div id="bar">
+                <div id="bar-left"></div>
+                <div id="bar-middle">
+                    <div id="bar-middle-left"></div>
+                    <div id="bar-middle-right"></div>
+                </div>
+                <div id="bar-right"></div>
+            </div>
+        </div>
+    </body>
+</html>
