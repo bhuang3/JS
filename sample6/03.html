@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Lesson 06 - 3</title>
+        <style>
+            body {
+                font: 12px/1.5 \5fae\8f6f\96c5\9ed1;
+                height: 100%;
+            }
+
+            #box {
+                border: 1px solid black;
+                position: absolute;
+                left: 200px;
+				display: none;
+            }
+
+            #box ul {
+                padding: 2px;
+                margin: 0px;
+                list-style-type: none;
+                background: #F1F1F1;
+                border: 1px solid #979797;
+                box-shadow: 2px 2px 2px rgba(0,0,0,.6);
+            }
+
+            li {
+                display: block;
+                margin-bottom: 3px;
+                padding: 0px 30px;
+                cursor: pointer;
+                white-space: nowrap;
+                height: 22px;
+                line-height: 22px;
+            }
+
+            .sub-menu {
+                background: url("../img/sample6/03/arrow.png") no-repeat right 8px;
+            }
+
+            .sub-menu ul {
+                display: none;
+                position: absolute;
+            }
+
+            #box ul li:hover {
+                background-color: #F1F3F6;
+                border: 1px solid #AECFF7;
+                height: 20px;
+                line-height: 20px;
+                padding: 0px 29px;
+            }
+        </style>
+        <script>
+            window.onload = function () {
+            	var menu = document.getElementById("menu");
+            	var subs = document.getElementsByTagName("li");
+            	var content = document.getElementById("content");
+				var box = document.getElementById("box");
+            	var i = 0;
+            	var show = null;
+            	var hide = null;
+
+            	setLength(menu);
+
+				document.onclick = function () {
+					box.style.display = "none";
+				};
+
+				document.oncontextmenu = function (event) {
+					event = event || window.event;
+
+					box.style.display = "block";
+					box.style.left = event.clientX + "px";
+					box.style.top = event.clientY + "px";
+
+					return false;
+				};
+
+            	for (; i < subs.length; i++) {
+            		subs[i].onmouseover = displayMenu;
+            		subs[i].onmouseout = hideMenu;
+            	}
+
+            	function displayMenu () {
+            		var subMenu = this.firstElementChild;
+            		var left = this.offsetWidth + "px";
+            		var top = this.offsetTop + "px";
+					var self = this;
+
+					if (hide) {
+						clearTimeout(hide);
+					}
+
+            		show = setTimeout(function () {
+						for (var j = 0; j < self.parentNode.children.length; j++) {
+							if (self.parentNode.children[j].className === "sub-menu") {
+								self.parentNode.children[j].firstElementChild.style.display = "none";
+							}
+						}
+
+						if (self.className === "sub-menu") {
+							subMenu.style.left = left;
+							subMenu.style.top = top;
+							subMenu.style.display = "block";
+
+							setLength(subMenu);
+						}
+
+            		}, 300);
+            	}
+
+            	function hideMenu () {
+					var self = this;
+
+            		if (show) {
+						clearTimeout(show);
+					}
+
+            		hide = setTimeout(function () {
+						for (var j = 0; j < self.parentNode.children.length; j++) {
+							if (self.parentNode.children[j].className === "sub-menu") {
+								self.parentNode.children[j].firstElementChild.style.display = "none";
+							}
+						}
+            		}, 300);
+            	}
+            	
+            	function setLength (ul) {
+            		var subMenu = ul.children;
+            		var li = null;
+            		var max = 0;
+            		var j = 0;
+
+            		for (j = 0; j < subMenu.length; j++) {
+            			li = subMenu[j];
+            			max = Math.max(max, li.clientWidth - parseInt(li.style.paddingLeft) * 2);
+            		}
+
+            		for (j = 0; j < subMenu.length; j++) {
+            			subMenu[i].style.width = max + "px";
+            		}
+            	}
+            };
+        </script>
+    </head>
+    <body>
+        <div id="box">
+	        <ul id="menu">
+		        <li><strong>JavaScript 学习</strong></li>
+		        <li class="sub-menu">第一课
+		            <ul>
+		                <li>网页特效原理分析</li>
+		                <li>响应用户操作</li>
+		                <li>提示框效果</li>
+		                <li>事件驱动</li>
+		                <li>元素属性操作</li>
+		            </ul>
+		        </li>
+		        <li class="sub-menu">第二课
+		            <ul>
+		                <li>改变网页背景颜色</li>
+		                <li>函数传参</li>
+		                <li>高重用性函数的编写</li>
+		                <li>126邮箱全选效果</li>
+		                <li>循环及遍历操作</li>
+		            </ul>
+		        </li>
+		        <li class="sub-menu">第三课
+		            <ul>
+		                <li class="sub-menu">JavaScript组成
+		                    <ul>
+		                        <li>ECMAScript</li>
+		                        <li>DOM</li>
+		                        <li>BOM</li>
+		                        <li>JavaScript兼容性来源</li>
+		                    </ul>
+		                </li>
+		                <li>JavaScript出现的位置、优缺点</li>
+		                <li>变量、类型、typeof、数据类型转换、变量作用域</li>
+		                <li class="sub-menu">闭包
+		                    <ul>
+		                        <li>什么是闭包</li>
+		                        <li>简单应用</li>
+		                        <li>闭包缺点</li>
+		                    </ul>
+		                </li>
+		                <li>运算符</li>
+		                <li>程序流程控制</li>
+		                <li class="sub-menu">定时器的使用
+		                    <ul>
+		                        <li>setInterval</li>
+		                        <li>setTimeout</li>
+		                    </ul>
+		                </li>
+		            </ul>
+		        </li>
+		    </ul>
+		</div>
+    </body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lesson 08 - 3</title>
+    <style>
+        body {
+            background-color: #3E3E3E;
+        }
+
+        div {
+            position: absolute;
+            background-color: #000000;
+            height: 100px;
+            width: 100px;
+            border: 1px solid white;
+            cursor: move;
+        }
+
+        #box1 {
+            left: 50px;
+        }
+
+        #box2 {
+            left: 200px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var box1 = document.getElementById("box1");
+            var box2 = document.getElementById("box2");
+            var temp = null;
+            var target = null;
+            var prev = null;
+            var distX = 0;
+            var distY = 0;
+
+            box1.onmousedown = box2.onmousedown = function (event) {
+                event = event || window.event;
+                distX = event.clientX - this.offsetLeft;
+                distY = event.clientY - this.offsetTop;
+
+                prev = target;
+                target = this;
+                temp = this.cloneNode(true);
+
+                temp.style.position = "absolute";
+                temp.style.opacity = "0.3";
+                temp.style.left = this.offsetLeft + "px";
+                temp.style.top = this.offsetTop + "px";
+
+                document.body.appendChild(temp);
+
+                if (temp.addEventListener) {
+                    temp.addEventListener("mousemove", mousemove);
+                    document.addEventListener("mousemove", mousemove)
+                } else {
+                    temp.attachEvent("onmousemove", mousemove);
+                    document.attachEvent("onmousemove", mousemove);
+                }
+            };
+
+            document.onmouseup = function (event) {
+                event = event || window.event;
+
+                if (!temp) {
+                    return;
+                }
+
+                target.style.left = event.clientX - distX + "px";
+                target.style.top = event.clientY - distY + "px";
+                target.style.zIndex = 2;
+
+                if (prev) {
+                    prev.style.zIndex = 1;
+                }
+
+                document.body.removeChild(temp);
+                temp = null;
+
+                if (temp.removeEventListener) {
+                    temp.removeEventListener("mousemove", mousemove);
+                    document.removeEventListener("mousemove", mousemove)
+                } else {
+                    temp.detachEvent("onmousemove", mousemove);
+                    document.detachEvent("onmousemove", mousemove);
+                }
+            };
+
+            function mousemove (event) {
+                event = event || window.event;
+
+                temp.style.zIndex = 3;
+                temp.style.left = event.clientX - distX + "px";
+                temp.style.top = event.clientY - distY + "px";
+            }
+
+        };
+    </script>
+</head>
+<body>
+    <div id="box1"></div>
+    <div id="box2"></div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Lesson 02 - 6</title>
+        <style>
+            li {
+                display: inline-block;
+                border: 1px solid black;
+                margin: 10px 10px 0px 0px;
+                float: left;
+            }
+
+            ul {
+                display: block;
+                list-style: none;
+                padding: 0px 0px 10px 10px;
+                width: 700px;
+                border: 1px solid black;
+                overflow: auto;
+                margin: 20px auto;
+            }
+
+            img {
+                opacity: 0.3;
+                cursor: crosshair;
+            }
+
+            img:hover {
+                opacity: 1;
+            }
+
+            #pic {
+                opacity: 1;
+                display: block;
+                margin: 20px auto;
+                border: 1px solid black;
+            }
+
+        </style>
+        <script>
+            window.onload = function () {
+            	var images = document.getElementsByTagName("img");
+            	var pic = document.getElementById("pic");
+            	var prev = null;
+            	var i = 0;
+            	var width = images[0].offsetWidth;
+            	var height = images[0].offsetHeight;
+
+            	for (; i < images.length - 1; i++) {            		
+            		images[i].onmouseover = function () {
+            			pic.src = this.src;
+            			pic.style.width = width;
+            			pic.style.height = height;
+            		};
+
+            		images[i].onmouseout = function () {
+            			pic.src = "";
+            		};
+            	}
+            };
+        </script>
+    </head>
+    <body>
+        <ul>
+            <li><img src="../img/sample2/05/1.jpg"/></li>
+            <li><img src="../img/sample2/05/2.jpg"/></li>
+            <li><img src="../img/sample2/05/3.jpg"/></li>
+            <li><img src="../img/sample2/05/4.jpg"/></li>
+            <li><img src="../img/sample2/05/5.jpg"/></li>
+            <li><img src="../img/sample2/05/6.jpg"/></li>
+            <li><img src="../img/sample2/05/7.jpg"/></li>
+            <li><img src="../img/sample2/05/8.jpg"/></li>
+            <li><img src="../img/sample2/05/9.jpg"/></li>
+            <li><img src="../img/sample2/05/10.jpg"/></li>
+        </ul>
+        <img id="pic"/>
+    </body>
+</html>

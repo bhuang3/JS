@@ -1,0 +1,93 @@
+body {
+    text-align: center;
+    font: 700 24px/1.5 Arial;
+}
+
+#cal {
+    display: inline-block;
+    position: relative;
+    width: 300px;
+    background-color: #000;
+    overflow: hidden;
+    margin-top: 20px;
+    border: 1px solid black;
+}
+
+#formula {
+    display: inline-block;
+    position: absolute;
+    height: 20px;
+    width: 290px;
+    top: 0px;
+    font: 700 12px/1.5 Arial;
+    padding-right: 20px;
+    background: none;
+    border: none;
+    text-align: right;
+}
+
+#content {
+    width: 290px;
+    height: 84px;
+    text-align: right;
+    font: 700 50px/84px Arial;
+    padding: 0px 5px;
+    zoom: 1;
+    background: url(../../img/sample3/07/inputBg.jpg) repeat-x;
+}
+
+#panel {
+    list-style-type: none;
+    position: relative;
+    width: inherit;
+    margin: 10px auto;
+    padding: 0px 0px 0px 8px;
+    overflow: hidden;
+    background: url("../../img/sample3/07/bg.jpg");
+}
+
+li {
+    border-radius: 5px;
+    width: 63px;
+    height: 41px;
+    line-height: 41px;
+    float: left;
+    margin: 17px 10px 0 0;
+    color: #FFFFFF;
+    background: url("../../img/sample3/07/btn.png") no-repeat;
+    cursor: pointer;
+}
+
+li:hover {
+    background-position: -63px 0;
+}
+
+li.op {
+    background-position: 0px -41px;
+}
+
+li.op:hover {
+    background-position: -63px -41px;
+}
+
+li.eq {
+    height: 99px;
+    line-height: 99px;
+    background-position: 0 -164px;
+    position: absolute;
+    right: 8px;
+    top: 174px;
+}
+
+li.eq:hover {
+    background-position: -63px -164px;
+}
+
+li.zo {
+    width: 136px;
+    background-position: 0px -82px;
+}
+
+li.zo:hover {
+    background-position: 0px -123px;
+}

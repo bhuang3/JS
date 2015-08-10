@@ -20,20 +20,20 @@ list.prototype = {
 
             item.id = "div-" + i;
             item.className = "div-item";
-            item.innerHTML = data[i].title + " (" + data[i].lesson.length + ")";
+            item.innerHTML = data[i].title + " (" + data[i].sample.length + ")";
             this.addClick(item);
 
             parent.className = "div-parent";
             parent.appendChild(item);
 
-            for (; j < data[i].lesson.length; j++) {
-                var lesson = document.createElement("div");
+            for (; j < data[i].sample.length; j++) {
+                var sample = document.createElement("div");
 
-                lesson.id = "lesson-" + j + "-" + item.id;
-                lesson.className = "lesson-item";
-                lesson.innerHTML = "<a href='" + data[i].lesson[j].href + "' target='_blank'>" + (j + 1) + ") " + data[i].lesson[j].text  + "</a></br>";
+                sample.id = "sample-" + j + "-" + item.id;
+                sample.className = "sample-item";
+                sample.innerHTML = "<a href='" + data[i].sample[j].href + "' target='_blank'>" + (j + 1) + ") " + data[i].sample[j].text  + "</a></br>";
 
-                parent.appendChild(lesson);
+                parent.appendChild(sample);
             }
 
             outer.appendChild(parent);

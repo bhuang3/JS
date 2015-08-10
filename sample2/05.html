@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Lesson 02 - 5</title>
+        <style>
+            #cont {
+                width: 400px;
+                margin: 10px auto;
+            }
+
+            #change, #reset {
+                width: 70px;
+                margin-left: 0px;
+                margin-right: 5px;
+            }
+
+            #name, #value {
+                width: 150px;
+            }
+
+            label {
+                display: inline-block;
+                width: 50px;
+                margin-left: 100px;
+            }
+
+            #block {
+                width: 200px;
+                height: 200px;
+                background-color: black;
+                margin: 10px auto;
+            }
+
+            p {
+                width: 400px;
+            }
+
+        </style>
+        <script>
+            window.onload = function () {
+            	var name = document.getElementById("name");
+            	var value = document.getElementById("value");
+            	var change = document.getElementById("change");
+            	var reset = document.getElementById("reset");
+            	var block = document.getElementById("block");
+
+            	change.onclick = function () {
+            		block.style[name.value] = value.value;
+            	};
+
+            	reset.onclick = function () {
+            		block.removeAttribute("style");
+            	};
+            };
+        </script>
+    </head>
+    <body>
+        <div id="cont">
+            <p><label>Name: </label><input id="name" type="text"/></p>
+            <p><label>Value: </label><input id="value" type="text"/></p>
+            <p>
+                <label></label><input id="change" type="button" value="Change"/><input id="reset" type="button" value="Reset"/>
+            </p>
+        </div>
+        <div id="block"></div>
+    </body>
+</html>
