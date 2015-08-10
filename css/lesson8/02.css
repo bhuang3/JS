@@ -9,14 +9,18 @@ body {
 }
 
 #products {
-    list-style-type: none;
     overflow: hidden;
-    margin: 0px 0px 10px 0px;
-    padding: 0px;
-    white-space: nowrap;
 }
 
-#products li {
+#products ul {
+    padding: 0px;
+    position: relative;
+    white-space: nowrap;
+    list-style-type: none;
+    margin: 0px 0px 10px 0px;
+}
+
+#products ul li {
     display: inline-block;
     text-align: center;
     margin-right: 10px;
@@ -27,22 +31,22 @@ body {
     font: 14px/1.5 \5fae\8f6f\96c5\9ed1;
 }
 
-#products li img, #products li span {
+#products ul li img, #products ul li span {
     display: block;
 }
 
-#products li img {
+#products ul li img {
     margin-bottom: 10px;
     border-radius: 8px;
 }
 
 #bar {
     height: 15px;
-    cursor: e-resize;
+    cursor: pointer;
     background-color: #0A0A0A;
 }
 
-#bar-left, #bar-middle, #bar-right {
+#bar-left,  #bar-middle, #bar-right {
     height: inherit;
     display: inline-block;
 }
@@ -55,12 +59,24 @@ body {
     width: 30px;
     float: left;
     background-position: left -2px;
+    cursor: pointer;
+}
+
+#bar-left.stop {
+    background-position: left -21px;
+    cursor: default;
 }
 
 #bar-right {
     width: 30px;
     float: right;
     background-position: right -2px;
+    cursor: pointer;
+}
+
+#bar-right.stop {
+    background-position: right -21px;
+    cursor: default;
 }
 
 #bar-middle {
@@ -68,6 +84,7 @@ body {
     position: relative;
     left: -2px;
     background: url("../../img/lesson8/02/01.gif");
+    cursor: e-resize;
 }
 
 #bar-middle-left, #bar-middle-right {
