@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>Lesson 05 - 1</title>
+		<style>
+		    body {
+		        font: 12px/1.5 \5fae\8f6f\96c5\9ed1;
+		        background: #23384E;
+		        color: white;
+		    }
+
+		    span {
+		        display: inline-block;
+		        border: 1px solid white;
+		        width: 200px;
+		        height: 34px;
+		        text-align: left;
+		        padding-left: 10px;
+		        cursor: pointer;
+		    }
+
+		    #cont {
+		        position: relative;
+		        margin: 20px auto;
+		        width: 350px;
+		    }
+
+            #choose {
+                background-position: 0px -68px;
+                width: 200px;
+                height: 22px;
+                cursor: pointer;
+            }
+
+            #search {
+                display: inline-block;
+                position: absolute;
+                margin-left: 10px;
+                cursor: pointer;
+            }
+
+		    #games {
+		        display: none;;
+		        list-style-type: none;
+		        border: 1px solid white;
+		        overflow: auto;
+		        margin: 0px;
+		        padding: 0px;
+		    }
+
+		    #games li {
+		        display: block;
+		        border-top: 1px dotted white;
+		        text-align: left;
+		        padding-left: 10px;
+		        width: 200px;
+		        height: 20px;
+		        line-height: 20px;
+		        cursor: pointer;
+		    }
+		    
+		    #games li.first {
+		        border-top: none;
+		    }
+
+            #games li:hover {
+                background: #8B8B8B;
+            }
+
+            #search:hover {
+                color: red;
+            }
+		</style>
+		<script type="text/javascript">
+		    window.onload = function () {
+		    	var games = document.getElementById("games");
+		    	var list = games.children;
+		    	var choose = document.getElementById("choose");
+		    	var show = true;
+		    	var val = ["none", "inline-block"];
+
+		    	choose.onclick = function () {
+		    		games.style.display = val[show - 0];
+		    		show = !show;
+		    	};
+
+		    	for (var i = 0; i < list.length; i++) {
+		    		list[i].onclick = function () {
+		    			choose.innerHTML = this.innerHTML;
+		    			games.style.display = val[show - 0];
+			    		show = !show;
+		    		}
+		    	}
+		    };
+		</script>
+	</head>
+	<body>
+	    <div id="cont">
+	        <div id="select">
+	            <span id="choose">请选择游戏名称</span>
+	            <input id="search" type="button" value="搜索"/>
+	        </div>
+	        <ul id="games">
+	            <li class="first">地下城与勇士</li>
+		        <li>魔兽世界（国服）</li>
+		        <li>魔兽世界（台服）</li>
+		        <li>热血江湖</li>
+		        <li>神鬼传奇</li>
+		        <li>大话西游II</li>
+		        <li>QQ幻想世界</li>
+	        </ul>
+	    </div>
+	</body>
+</html>

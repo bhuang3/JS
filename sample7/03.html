@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Lesson 07 - 3</title>
+    </head>
+    <style>
+        #canvas {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            margin: 0px;
+            padding: 0px;
+        }
+
+        #target {
+            display: block;
+            position: absolute;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+        	var canvas = document.getElementById("canvas");
+        	var target = document.getElementById("target");
+        	var timer = 0;
+
+        	canvas.onmouseup = function (event) {
+        		event = event || window.event;
+        		target.src = "../img/lesson7/03/2.gif";
+
+        		clearInterval(timer);
+
+        		var startX = target.offsetLeft;
+        		var startY = target.offsetTop;
+        		var endX = Math.ceil(event.clientX);
+        		var endY = Math.ceil(event.clientY);
+        		var distance = Math.sqrt(Math.pow(Math.abs(endX - startX), 2) + Math.pow(Math.abs(endY - startY), 2));
+        		var init = distance;
+        		var sin = (endY - startY) * 1.0 / distance;
+        		var cos = (endX - startX) * 1.0 / distance;
+        		var speedX = distance / 15 * cos;
+        		var speedY = distance / 15 * sin;
+
+        		timer = setInterval(function () {
+        			startX += getSpeed(speedX, distance);
+        			startY += getSpeed(speedY, distance);
+        			target.style.left = startX + "px";
+        			target.style.top = startY + "px";
+        			distance = Math.sqrt(Math.pow(Math.abs(endX - startX), 2) + Math.pow(Math.abs(endY - startY), 2));
+
+        			if (distance <= 5) {
+        				startX = endX;
+        				startY = endY;
+        				target.src = "../img/lesson7/03/1.gif";
+
+        				clearInterval(timer);
+        			}
+        		}, 30);
+
+        		function getSpeed (speed, seed) {
+            		return seed * 2 / init * speed;
+            	}
+        	};
+        };
+    </script>
+    <body>
+        <div id="canvas"><img id="target" src="../img/sample7/03/1.gif"></div>
+    </body>
+</html>
