@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sample 10 - 1</title>
+    <style>
+        pre {
+            font: 12px/1.5 Courier New;
+            color: green;
+            background-color: #F0F0F0;
+            border: 1px dotted #333;
+            padding: 10px 20px 20px 10px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+        	var array = [1, 2, 3, 4, 5, 6, 7, 8];
+
+        	Array.prototype.sum = function () {
+        		var sum = 0;
+
+        		for (var i = 0; i < this.length; i++) {
+        			sum += this[i];
+        		}
+
+        		return sum;
+        	};
+
+        	Array.prototype.max = function () {
+        		var max = this[0];
+
+        		for (var i = 0; i < this.length; i++) {
+        			max = max > this[i] ? max : this[i];
+        		}
+
+        		return max;
+        	};
+
+        	window.alert(array.join(" + ") + " = " + array.sum() + "\n" + array.join(" | ") + " [MAX] = " + array.max());
+        };
+    </script>
+</head>
+<body>
+    <pre>
+        window.onload = function () {
+        	var array = [1, 2, 3, 4, 5, 6, 7, 8];
+
+        	Array.prototype.sum = function () {
+        		var sum = 0;
+
+        		for (var i = 0; i < this.length; i++) {
+        			sum += this[i];
+        		}
+
+        		return sum;
+        	};
+
+        	Array.prototype.max = function () {
+        		var max = this[0];
+
+        		for (var i = 0; i < this.length; i++) {
+        			max = max > this[i] ? max : this[i];
+        		}
+
+        		return max;
+        	};
+
+        	window.alert(array.join(" + ") + " = " + array.sum() + "\n" + array.join(" | ") + " [MAX] = " + array.max());
+        };
+    </pre>
+</body>
+</html>

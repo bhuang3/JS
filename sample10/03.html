@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sample 10 - 3</title>
+    <style>
+        #demo {
+            width: 600px;
+            margin: 20px auto;
+            padding: 10px;
+        }
+
+        #control {
+            margin-bottom: 10px;
+        }
+
+        #canvas {
+            height: 100px;
+            position: relative;
+            border: 1px solid #666;
+        }
+
+        #box {
+            height: 20px;
+            width: 20px;
+            margin: 10px;
+            position: absolute;
+            background-color: #999;
+        }
+
+    </style>
+    <script>
+        window.onload = function () {
+        	var box = document.getElementById("box");
+        	var btn = document.getElementById("btn");
+
+        	var Animate = function (elem, speed) {
+        		this.target = elem;
+        		this.speed = speed;
+        		this.left = this.target.offsetLeft;
+        		this.top = this.target.offsetTop;
+        		this.size = this.target.offsetWidth;
+        		this.minSize = this.size;
+        		this.curr = 0;
+        	};
+
+        	Animate.prototype.path = [
+        		{toLeft: 10, toTop: 10, toSize: 80},
+        		{toLeft: 490, toTop: 10, toSize: 80},
+        		{toLeft: 550, toTop: 10, toSize: 20},
+        		{toLeft: 550, toTop: 70, toSize: 20},
+        		{toLeft: 10, toTop: 70, toSize: 20},
+        		{toLeft: 10, toTop: 10, toSize: 20},
+        		{toLeft: 550, toTop: 10, toSize: 20},
+        		{toLeft: 490, toTop: 10, toSize: 80}
+        	];
+
+        	Animate.prototype.moveTo = function (finalLeft, finalTop) {
+        		if (this.left == finalLeft && this.top == finalTop) {
+        			return true;
+        		}
+
+        		this.left += this.calculateSpeed(this.left, finalLeft);
+        		this.top += this.calculateSpeed(this.top, finalTop);
+
+        		if (Math.abs(this.left - finalLeft) <= 1) {
+        			this.left = finalLeft;
+        		}
+
+        		if (Math.abs(this.top - finalTop) <= 1) {
+        			this.top = finalTop;
+        		}
+
+        		this.target.style.left = this.left + "px";
+        		this.target.style.top = this.top + "px";
+        	};
+
+        	Animate.prototype.resizeTo = function (finalSize) {
+        		if (this.size == finalSize) {
+        			return true;
+        		}
+
+        		this.size += this.calculateSpeed(this.size, finalSize);
+
+        		if (Math.abs(this.size - finalSize) <= 1) {
+        			this.size = finalSize;
+        		}
+
+        		this.target.style.width = this.size + "px";
+        		this.target.style.height = this.size + "px";
+        	};
+
+        	Animate.prototype.start = function () {
+        		var self = this;
+        		var toLeft = self.path[self.curr]["toLeft"];
+        		var toTop = self.path[self.curr]["toTop"];
+        		var toSize = self.path[self.curr]["toSize"];
+
+        		var timer = setInterval (function () {
+        			if (self.resizeTo(toSize) && self.moveTo(toLeft, toTop)) {
+        				if (self.curr == self.path.length - 1) {
+        					clearInterval(timer);
+        					return;
+        				}
+
+        				self.curr++;
+        				toLeft = self.path[self.curr]["toLeft"];
+                		toTop = self.path[self.curr]["toTop"];
+                		toSize = self.path[self.curr]["toSize"];
+        			}
+        		}, 30);
+        	}
+
+        	Animate.prototype.calculateSpeed = function (curr, to) {
+        		return this.speed * (to - curr) * 1.0 / 100;
+        	};
+
+        	btn.onclick = function () {
+        		new Animate(box, 20).start();
+        	};
+        };
+    </script>
+</head>
+<body>
+    <div id="demo">
+        <div id="control">
+            <input id="btn" type="button" value="开始"></button>
+        </div>
+        <div id="canvas">
+            <div id="box"></div>
+        </div>
+    </div>
+</body>
+</html>

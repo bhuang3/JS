@@ -3,8 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <title>Lesson 09 - 1</title>
+    <style>
+        body {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        ul {
+            list-style-type: none;
+            position: absolute;
+            bottom: 5px;
+            width: 100%;
+            padding: 0px;
+            margin: 0px;
+            text-align: center;
+        }
+
+        ul li {
+            display: inline-block;
+            padding: 0px;
+            margin: 0px;
+        }
+
+        ul li img {
+            vertical-align: bottom;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+        	var menu = document.getElementById("menu");
+        	var imgs = document.getElementsByTagName("img");
+        	var sizes = [];
+        	var i = 0;
+
+        	for (i = 0; i < imgs.length; i++) {
+        		sizes[i] = imgs[i].offsetWidth;
+        		imgs[i].width = imgs[i].offsetWidth / 2;
+        	}
+
+        	document.onmousemove = function (event) {
+        		event = event || window.event;
+
+        		var x = 0;
+        		var y = 0;
+        		var scale = 0;
+
+        		for (i = 0; i < imgs.length; i++) {
+        			x = event.clientX - imgs[i].offsetLeft - imgs[i].offsetWidth / 2;
+        			y = event.clientY - imgs[i].offsetTop - menu.offsetTop - imgs[i].offsetHeight / 2;
+        			scale = 1 - (Math.sqrt(x * x + y * y) / 300);
+
+        			scale = scale <= 0.5 ? 0.5 : scale;
+        			imgs[i].width = sizes[i] * scale;
+        			//imgs[i].style.height = sizes[i] * scale + "px";
+        		}
+        	};
+        };
+    </script>
 </head>
 <body>
-
+    <ul id="menu">
+        <li><img src="../img/sample9/1.png"/></li>
+        <li><img src="../img/sample9/2.png"/></li>
+        <li><img src="../img/sample9/3.png"/></li>
+        <li><img src="../img/sample9/4.png"/></li>
+        <li><img src="../img/sample9/5.png"/></li>
+        <li><img src="../img/sample9/6.png"/></li>
+        <li><img src="../img/sample9/7.png"/></li>
+        <li><img src="../img/sample9/8.png"/></li>
+    </ul>
 </body>
 </html>

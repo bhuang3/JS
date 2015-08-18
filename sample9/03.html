@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sample 09 - 3</title>
+    <style type="text/css">
+        #info {
+            display: inline-block;
+            font-size: 12px;
+            font-family: arial;
+            border: 2px dashed gray;
+            padding: 10px 20px 10px 20px;
+            margin: 0px;
+        }
+
+        #info div {
+            margin-bottom: 10px;
+        }
+
+        #name, #age, #address {
+            border-radius: 5px;
+        }
+
+        #address {
+            width: 300px;
+        }
+
+        #note, #intro {
+            width: 300px;
+            height: 100px;
+            resize: none;
+            border-radius: 5px;
+        }
+
+        label {
+            display: inline-block;
+            vertical-align: top;
+            border: 1px solid red;
+        }
+    </style>
+    <script type="text/javascript">
+        window.onload = function () {
+        	var month = document.getElementById("month");
+        	var day = document.getElementById("day");
+        	var year = document.getElementById("year");
+
+        	var day29 = document.getElementById("day29");
+        	var day30 = document.getElementById("day30");
+        	var day31 = document.getElementById("day31");
+
+        	var removed29 = false;
+        	var removed30 = false;
+        	var removed31 = false;
+
+        	month.onchange = year.onchange = function () {
+        		var m = parseInt(month.value);
+        		var y = parseInt(year.value);
+
+        		switch (m) {
+        		    case 1:
+        		    case 3:
+        		    case 5:
+        		    case 7:
+        		    case 8:
+        		    case 10:
+        		    case 12:
+        		    	if (removed29) day.appendChild(day29);
+        		    	if (removed30) day.appendChild(day30);
+        		    	if (removed31) day.appendChild(day31);
+
+        		    	removed29 = false;
+        		    	removed30 = false;
+        		    	removed31 = false;
+
+        		    	break;
+
+        		    case 2:
+        		    	if (y % 4 === 0 || y % 400 === 0) {
+        		    		if (removed29) day.appendChild(day29);
+
+        		    		removed29 = false;
+        		    	} else {
+        		    		if (!removed29) day.removeChild(day29);
+
+        		    		removed29 = true;
+        		    	}
+
+        		    	if (!removed30) day.removeChild(day30);
+
+        		    	removed30 = true;
+
+        		    case 4:
+        		    case 6:
+        		    case 9:
+        		    case 11:
+
+        		    	if (!removed31) day.removeChild(day31);
+
+        		    	removed31 = true;
+        		    	break;
+        		}
+        	};
+        }
+    </script>
+</head>
+<body>
+    <form id="info">
+        <div>
+            <label>姓名：</label>
+            <input id="name" name="name" type="text"/>
+        </div>
+        <div>
+            <label>年龄：</label>
+            <input id="age" name="age" type="text"/>
+        </div>
+        <div>
+	        <label>性别：</label>
+	        <select id="gender" name="gender">
+	            <option value="female" selected="selected">女</option>
+	            <option value=“male">男</option>
+	        </select>
+        </div>
+        <div>
+            <label>生日：</label>
+	        <select id="month" name="month">
+	            <option value="1" selected="selected">1月</option>
+	            <option value="2">2月</option>
+	            <option value="3">3月</option>
+	            <option value="4">4月</option>
+	            <option value="5">5月</option>
+	            <option value="6">6月</option>
+	            <option value="7">7月</option>
+	            <option value="8">8月</option>
+	            <option value="9">9月</option>
+	            <option value="10">10月</option>
+	            <option value="11">11月</option>
+	            <option value="12">12月</option>
+	        </select>
+	        <select id="day" name="day">
+	            <option value="1" selected="selected">1号</option>
+	            <option value="2">2号</option>
+	            <option value="3">3号</option>
+	            <option value="4">4号</option>
+	            <option value="5">5号</option>
+	            <option value="6">6号</option>
+	            <option value="7">7号</option>
+	            <option value="8">8号</option>
+	            <option value="9">9号</option>
+	            <option value="10">10号</option>
+	            <option value="11">11号</option>
+	            <option value="12">12号</option>
+	            <option value="13">13号</option>
+	            <option value="14">14号</option>
+	            <option value="15">15号</option>
+	            <option value="16">16号</option>
+	            <option value="17">17号</option>
+	            <option value="18">18号</option>
+	            <option value="19">19号</option>
+	            <option value="20">20号</option>
+	            <option value="21">21号</option>
+	            <option value="22">22号</option>
+	            <option value="23">23号</option>
+	            <option value="24">24号</option>
+	            <option value="25">25号</option>
+	            <option value="26">26号</option>
+	            <option value="27">27号</option>
+	            <option value="28">28号</option>
+	            <option value="29" id="day29">29号</option>
+	            <option value="30" id="day30">30号</option>
+	            <option value="31" id="day31">31号</option>
+	        </select>
+	        <select id="year" name="year">
+	            <option value="2000" selected="selected">2000年</option>
+	            <option value="2001">2001年</option>
+	            <option value="2002">2002年</option>
+	            <option value="2003">2003年</option>
+	            <option value="2004">2004年</option>
+	            <option value="2005">2005年</option>
+	            <option value="2006">2006年</option>
+	            <option value="2007">2007年</option>
+	            <option value="2008">2008年</option>
+	            <option value="2009">2009年</option>
+	            <option value="2010">2010年</option>
+	            <option value="2011">2011年</option>
+	            <option value="2012">2012年</option>
+	            <option value="2013">2013年</option>
+	        </select>
+	    </div>
+	    <div>
+	        <label>婚姻：</label>
+	        <input name="marrige" type="radio" value="未婚" checked="checked"><label>未婚</label>
+	        <input name="marrige" type="radio" value="已婚"><label>已婚</label>
+	    </div>
+	    <div>
+	        <label>爱好：</label>
+	        <input name="hobby" type="checkbox" value="吃饭"/><label>吃饭</label>
+	        <input name="hobby" type="checkbox" value="睡觉"/><label>睡觉</label>
+	        <input name="hobby" type="checkbox" value="上网" checked="checked"/><label>上网</label>
+	        <input name="hobby" type="checkbox" value="打游戏" checked="checked"/><label>打游戏</label>
+	    </div>
+	    <div>
+	        <label>地址：</label>
+	        <input id="address" name="address" type="text"/>
+	    </div>
+	    <div>
+	        <label>备注：</label>
+	        <textarea id="note" name="note"></textarea>
+	    </div>
+	    <div>
+	        <label>说明：</label>
+	        <textarea id="intro" name="intro"></textarea>
+	    </div>
+	    <div>
+	        <label style="visibility: hidden;">提交：</label>
+	        <input type="submit" value="提交"/>
+	    </div>
+    </form>
+</body>
+</html>
