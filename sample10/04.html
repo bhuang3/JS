@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Sample 10 - 4</title>
+        <style>
+            #box {
+                border: 1px solid black;
+                width: 820px;
+                margin: auto;
+                background: #EEE;
+            }
+
+            #header {
+                overflow: auto;
+                padding: 0px;
+                margin: 0px;
+                background: #FAFAFA;
+            }
+
+            h4 {
+                display: inline-block;
+                margin: 5px 0px 5px 10px;
+                float: left;
+            }
+
+            a {
+                display: inline-block;
+                margin: 5px 10px 5px 0px;
+                float: right;
+            }
+
+            #images {
+                margin: 0px 0px 10px 0px;
+                padding: 0px;
+                height: 510px;
+                list-style: none;
+            }
+
+            li {
+                display: inline-block;
+                border: 1px solid #C3C3C3;
+                margin: 10px 0px 0px 10px;
+                background: #FFFFFF;
+            }
+
+            img {
+                margin: 5px;
+                vertical-align: top;
+            }
+
+            li:hover {
+                cursor: move;
+            }
+
+            .near {
+                border: 2px dashed #F30;
+                Opacity: 0.5;
+            }
+
+            #log {
+                width: 500px;
+                height: 500px;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                background: red;
+            }
+
+        </style>
+        <script>
+            window.onload = function () {
+            	new ImageWall();
+            };
+
+            var console = {
+            	log: function (msg) {
+            		document.getElementById("log").innerHTML = msg + "</br>";
+            	}
+            };
+
+            var ImageWall = function () {
+            	var self = this;
+            	this.initialize();
+
+            	setTimeout(function () {
+            		self.changeLayout();
+            	}, 300);
+            }
+
+            ImageWall.prototype = {
+            	initialize: function () {
+            		var images = document.getElementById("images");
+                	var temp = document.createDocumentFragment();
+                	var change = document.getElementById("change");
+                	var i = 1;
+                	var self = this;
+                	var pos = [];
+
+                	for (; i <= 20; i++) {
+                		var img = document.createElement("img");
+                		var li = document.createElement("li");
+
+                		img.src = "../img/sample10/04/" + i + ".jpg";
+
+                		li.appendChild(img);
+                		temp.appendChild(li);
+
+                		pos.push(i);
+                	}
+
+                	images.appendChild(temp);
+
+                	this.pos = pos;
+                	this.imageWall = document.getElementById("images");
+            		this.images = images.getElementsByTagName("li");
+
+            		change.onclick = function () {
+            			self.randomMove();
+            		};
+            	},
+
+            	changeLayout: function () {
+                	var pos = null;
+                	var images = this.imageWall;
+                	var imgs = this.images;
+
+                	images.style.height = images.offsetHeight + "px";
+
+                	for (i = 0; i < imgs.length; i++) {
+                		imgs[i].style.cssText = "";
+                	}
+
+                	for (i = 0; i < imgs.length; i++) {
+                		pos = this.getPosition(imgs[i]);
+
+                		imgs[i].style.left = pos.left + "px";
+                		imgs[i].style.top = pos.top + "px";
+                		imgs[i].posLeft = imgs[i].offsetLeft;
+                		imgs[i].posTop = imgs[i].offsetTop;
+                	}
+
+                	for (i = 0; i < imgs.length; i++) {
+                		imgs[i].style.position = "absolute";
+                		imgs[i].style.margin = "0px";
+                		this.drag(imgs[i]);
+                	}
+            	},
+
+            	drag: function (obj) {
+            		var self = this;
+
+            		obj.onmousedown = function (event) {
+            			event = event || window.event;
+            			var disX = event.clientX - this.offsetLeft;
+            			var disY = event.clientY - this.offsetTop;
+            			var oThis = this;
+            			var near = oThis;
+
+            			this.style.zIndex++;
+
+            			document.onmousemove = function (event) {
+            				event = event || window.event;
+
+            				oThis.style.left = (event.clientX - disX) + "px";
+            				oThis.style.top = (event.clientY - disY) + "px";
+
+            				if (near) near.className = "";
+            				near = self.findNearest(oThis);
+            				if (near) near.className = "near";
+
+            				return false;
+            			};
+
+            			document.onmouseup = function (event) {
+                			document.onmousemove = null;
+                			document.onmouseup = null;
+
+                			oThis.style.zIndex--;
+
+                			if (near) {
+                				near.className = "";
+
+                				self.swapPos(near, oThis);
+                				self.move(near);
+                				self.move(oThis);
+                			} else {
+                				self.move(oThis, oThis.posLeft, oThis.posTop);
+                			}
+                		};
+
+                		return false;
+            		};
+            	},
+
+            	move: function (obj) {
+            		clearInterval(obj.timer);
+
+            		var toLeft = obj.posLeft;
+            		var toTop = obj.posTop;
+
+            		obj.timer = setInterval(function () {
+            			var disX = toLeft - obj.offsetLeft;
+            			var disY = toTop - obj.offsetTop;
+            			var speedX = disX / 3;
+                		var speedY = disY / 3;
+
+                		if (Math.abs(disX) <= 1 && Math.abs(disY) <= 1) {
+                			obj.style.left = toLeft + "px";
+                			obj.style.top = toTop + "px";
+
+                			clearInterval(obj.timer);
+
+                		} else {
+                			obj.style.left = (obj.offsetLeft + speedX) + "px";
+                    		obj.style.top = (obj.offsetTop + speedY) + "px";
+                		}
+
+            		}, 30);
+            	},
+
+            	randomMove: function () {
+            		var images = this.images;
+            		var swap = this.swapPos;
+            		var move = this.move;
+            		var pos = this.pos;
+            		var i = 0;
+
+            		this.pos.sort(function () {return Math.random() > Math.random() ? 1 : -1});
+
+            		for (; i < pos.length; i += 2) {
+            			swap(images[pos[i]], images[pos[i + 1]]);
+            			move(images[pos[i]]);
+            			move(images[pos[i + 1]]);
+            		}
+            	},
+
+            	swapPos: function (obj1, obj2) {
+            		var left = obj1.posLeft;
+    				var top = obj1.posTop;
+
+    				obj1.posLeft = obj2.posLeft;
+    				obj1.posTop = obj2.posTop;
+    				obj2.posLeft = left;
+    				obj2.posTop = top;
+            	},
+
+            	findNearest: function (obj) {
+            		var imgs = this.images;
+            		var getDist = this.getDistance;
+            		var i = 0;
+            		var curr = 0;
+            		var near = imgs[i];
+            		var dist = Number.MAX_VALUE;
+
+            		for (; i < imgs.length; i++) {
+            			if (imgs[i] != obj) {
+            				curr = getDist(imgs[i], obj);
+
+            				if (curr < dist) {
+            					dist = curr;
+            					near = imgs[i];
+            				}
+            			}
+            		}
+
+            		return this.isOverlap(obj, near) ? near : null;
+            	},
+
+            	isOverlap: function (obj1, obj2) {
+            		var l1 = obj1.offsetLeft;
+            		var t1 = obj1.offsetTop;
+            		var r1 = obj1.offsetWidth + l1;
+            		var b1 = obj1.offsetHeight + t1;
+
+            		var l2 = obj2.offsetLeft;
+            		var t2 = obj2.offsetTop;
+            		var r2 = obj2.offsetWidth + l2;
+            		var b2 = obj2.offsetHeight + t2;
+
+            		return !(r1 < l2 || b1 < t2 || r2 < l1 || b2 < t1);
+            	},
+
+            	getDistance: function (obj1, obj2) {
+            		var x = (obj1.offsetLeft - obj2.offsetLeft) / 2;
+            		var y = (obj1.offsetTop - obj2.offsetTop) / 2;
+
+            		return Math.sqrt(x * x + y * y);
+            	},
+
+            	getPosition: function (obj) {
+            		var x = 0;
+            		var y = 0;
+
+            		while (obj) {
+            			x += obj.offsetLeft;
+            			y += obj.offsetTop;
+            			obj = obj.offsetParent;
+            		}
+
+            		return {left: x, top: y};
+            	}
+            };
+
+        </script>
+    </head>
+    <body>
+        <div id="box">
+            <div id="header">
+                <h4>Image List</h4>
+                <a id="change" href="#">Sort Randomly</a>
+            </div>
+            <ul id="images"></ul>
+        </div>
+        
+    </body>
+</html>
